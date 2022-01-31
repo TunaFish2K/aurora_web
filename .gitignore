@@ -1,0 +1,5 @@
+__pycache__/*
+venv/*
+Aurora_Web.zip
+config.json
+db.sqlite

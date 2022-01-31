@@ -1,0 +1,40 @@
+{% extends "drawer.html" %}
+{% import "drawer.html" as drawer %}
+{% block title %}新建用户{% endblock %}
+{% block pagename %}新建用户{% endblock %}
+{% block body %} 
+{{ super() }}
+<div class="mdui-row">
+    <div class="mdui-col-sm-6 mdui-col-md-10">
+    <div class="mdui-card" style="background-color: rgba(255, 255, 225, 0.5)">
+        <div class="mdui-card-primary">
+            <div class="mdui-card-primary-title"><font style="size:20mm;">新建用户</font></div>
+          </div>
+    <div class="mdui-card-content">
+        <form method="post">
+            {{ form.hidden_tag() }}
+        <ul class="mdui-list">
+            <li class="mdui-list-item">
+                <div class="mdui-textfield">
+                    <font size="4">用户名</font>
+                    {{ form.username(class="mdui-textfield-input mdui-text-right",style="width:1000px;display:inline;",placeholder="用户名") }}    
+                  </div>
+            </li>
+            <li class="mdui-list-item">                
+                <div class="mdui-textfield">
+                    <font size="4">密码</font>
+                    {{ form.password(class="mdui-textfield-input mdui-text-right",style="width:1000px;display:inline;",type="password",placeholder="密码") }}    
+                  </div>
+                
+            </li>
+        </ul>
+        {{ form.submit(class="mdui-btn mdui-btn-raised") }}
+    </form>
+    </div>
+    </div>
+    </div>
+    </div>
+{% endblock %}
+{% block items %}
+{{ drawer.drawer_item("用户","/user/") }}
+{% endblock %}

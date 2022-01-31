@@ -1,0 +1,45 @@
+{% extends "drawer.html" %}
+{% import "drawer.html" as drawer %}
+{% block title %}用户{% endblock %}
+{% block pagename %}用户{% endblock %}
+{% block body %} 
+{{ super() }}
+<div class="mdui-row">
+    <div class="mdui-col-sm-6 mdui-col-md-10">
+    <div class="mdui-card" style="background-color: rgba(255, 255, 225, 0.5)">
+        <div class="mdui-card-primary">
+            <div class="mdui-card-primary-title">用户管理</div>
+            <a href="{{ url_for("main.new_user") }}"><button class="mdui-btn mdui-btn-raised"><font color="grey">新建用户</font></button></a>
+            <div><span class="mdui-color-red">
+                {% if error=="1" %}
+                用户名或密码错误！
+                {% elif error=="2" %}
+                用户名重复！
+                {% endif %}
+            </span></div>
+          </div>
+    <div class="mdui-card-content">
+        <ul class="mdui-list">
+        {% for user in users %}
+        <div class="mdui-divider"></div>
+            <li class="mdui-list-item mdui-ripple mdui-list-dense">
+                {% if user.username.startswith("!") %}
+                <h4><font color="red">[管理员]&nbsp&nbsp&nbsp</font></h4>
+                {% endif %}
+                <div align="left" style="font-size:large;font-weight:900;">{{ user.username }}</div>
+                <div class="mdui-toolbar-spacer"></div>
+                <div><a href={{ url_for("main.user_detail",username=user.username) }}><button class="mdui-btn mdui-btn-raised mdui-color-cyan-100">用户信息</button></a></div>
+                <span style="margin-left: 8px;"> | </span>
+                <div><a href={{ url_for("main.delete",name=user.username) }}><button class="mdui-btn mdui-btn-raised mdui-color-red-100">删除用户</button></a></div>
+            </li>
+    {% endfor %}
+    </ul>
+    <div class="mdui-divider"></div>
+    </div>
+    </div>
+    </div>
+    </div>
+{% endblock %}
+{% block items %}
+    {{ drawer.drawer_item("用户","/user/") }}
+{% endblock %}

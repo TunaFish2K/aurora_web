@@ -1,0 +1,43 @@
+{% extends "drawer.html" %}
+{% import "drawer.html" as drawer %}
+{% block title %}用户Profile{% endblock %}
+{% block pagename %}用户Profile{% endblock %}
+{% block body %} 
+{{ super() }}
+<div class="mdui-row">
+    <div class="mdui-col-sm-6 mdui-col-md-10">
+    <div class="mdui-card" style="background-color: rgba(255, 255, 225, 0.5)">
+        <div class="mdui-card-primary">
+            <div class="mdui-card-primary-title"><font style="size:20mm;">{{ user.username|upper }}</font></div>
+          </div>
+    <div class="mdui-card-content">
+        <form method="post">
+            {{ form.hidden_tag() }}
+        <ul class="mdui-list">
+            <li class="mdui-list-item">
+                <font size="4">权限</font>
+            <div class="mdui-toolbar-spacer"></div>
+            {% if user.username.startswith("!") %}
+                <h4><font color="red" size="4">管理员</font></h4>
+            {% else %}
+            <h4><font size="4">普通用户</font></h4>
+            {% endif %}
+            </li>
+            <li>                
+                <div class="mdui-textfield">
+                    <font size="4">密码</font>
+                    {{ form.password(class="mdui-textfield-input mdui-text-right",style="width:1300px;display:inline;",type="password",placeholder="密码") }}    
+                  </div>
+                
+            </li>
+        </ul>
+        {{ form.submit(class="mdui-btn mdui-btn-raised") }}
+    </form>
+    </div>
+    </div>
+    </div>
+    </div>
+{% endblock %}
+{% block items %}
+{{ drawer.drawer_item("用户","/user/") }}
+{% endblock %}

@@ -1,0 +1,6 @@
+推荐使用python虚拟环境：
+python -m venv venv
+venv\Scripts\activivate (Windows,Linux自行查找)
+pip install -r requirement.txt
+flask db upgrade
+python production.py host:port

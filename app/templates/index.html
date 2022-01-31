@@ -1,0 +1,39 @@
+{% extends "drawer.html" %}
+{% import "drawer.html" as drawer %}
+{% block title %}主页{% endblock %}
+{% block pagename %}主页{% endblock %}
+{% block body %} 
+{{ super() }}
+<div class="mdui-row">
+    <div class="mdui-col-sm-6 mdui-col-md-10">
+    <div class="mdui-card" style="background-color: rgba(255, 255, 225, 0.5)">
+        <div class="mdui-card-primary">
+            <div class="mdui-card-primary-title"><font style="size:20mm;">主页</font></div>
+          </div>
+    <div class="mdui-card-content">
+    
+    {% if user.username.startswith("!") %}
+    <div class="mdui-row">
+        <div class="mdui-col-sm-6 mdui-col-md-10">
+        <div class="mdui-card" style="background-color: rgba(255, 255, 225, 0.5)">
+            <div class="mdui-card-primary">
+                <div class="mdui-card-primary-title"><font style="size:20mm;">内存</font></div>
+              </div>
+              <div class="mdui-card-content">
+            <h2>总内存：{{ mems[0] }}MB</h2>
+            <h2>已使用内存：{{ mems[1] }}MB</h2>
+            <h2>可用内存：{{ mems[2] }}MB</h2>
+        </div>
+    </div>
+    </div>
+    </div>
+    {% endif %}
+    
+    </div>
+    </div>
+    </div>
+    </div>
+{% endblock %}
+{% block items %}
+    {{ drawer.drawer_item_admin("用户","/user/",user) }}
+{% endblock %}

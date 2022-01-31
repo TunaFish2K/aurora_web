@@ -1,0 +1,29 @@
+{% extends "drawer.html" %}
+{% import "drawer.html" as drawer %}
+{% block title %}删除用户{% endblock %}
+{% block pagename %}删除用户{% endblock %}
+{% block body %} 
+{{ super() }}
+<div class="mdui-row">
+    <div class="mdui-col-sm-6 mdui-col-md-10">
+    <div class="mdui-card" style="background-color: rgba(255, 255, 225, 0.5)">
+        <div class="mdui-card-primary">
+            <div class="mdui-card-primary-title"><font style="size:20mm;">用户删除</font></div>
+          </div>
+    <div class="mdui-card-content">
+        <h1>你确定要删除吗？</h1>
+        <h2>在下面输入用户名来确认删除。</h2>
+        <h3>错误将跳转至用户管理。</h3>
+        <form method="post">
+            {{ form.hidden_tag() }}
+            {{ form.repeat(class="mdui-textfield-input mdui-text-right",style="width:600px;display:inline;",placeholder="重复用户名") }}
+            {{ form.submit(class="mdui-btn mdui-btn-raised") }}
+        </form>
+    </div>
+    </div>
+    </div>
+    </div>
+{% endblock %}
+{% block items %}
+{{ drawer.drawer_item("用户","/user/") }}
+{% endblock %}

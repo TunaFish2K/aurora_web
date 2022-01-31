@@ -1,0 +1,98 @@
+{% extends "drawer.html" %}
+{% import "drawer.html" as drawer %}
+{% block title %}服务器{% endblock %}
+{% block pagename %}服务器{% endblock %}
+{% block body %} 
+{{ super() }}
+<div class="mdui-row">
+    <div class="mdui-col-sm-6 mdui-col-md-10">
+    <div class="mdui-card" style="background-color: rgba(255, 255, 255, 0.5)">
+        <div class="mdui-card-primary">
+            <div class="mdui-card-primary-title"><font style="size:20mm;">服务器</font></div>
+          </div>
+    <div class="mdui-card-content">
+        <div class="mdui-row">
+            <div class="mdui-col-sm-6 mdui-col-md-10">
+            <div class="mdui-card" style="background-color: rgba(255, 255, 255, 0.5)">
+                <div class="mdui-card-primary">
+                    <div class="mdui-card-primary-title"><font style="size:20mm;">服务器操作</font></div>
+                  </div>
+            <div class="mdui-card-content">
+                <!--服务器操作-->
+                <a href={{ url_for("server.mc_start") }}><button class="mdui-btn mdui-btn-raised"><font color="grey">启动服务器</font></button></a>
+                <a href={{ url_for("server.mc_stop") }}><button class="mdui-btn mdui-btn-raised"><font color="grey">停止服务器</font></button></a>
+                <form method="post">
+                    {{ command_form.hidden_tag() }}
+                    <div class="mdui-textfield">{{ command_form.command(class="mdui-textfield-input",placeholder="指令") }}</div>
+                    {{ command_form.submit(class="mdui-btn mdui-btn-raised") }}
+                </form>
+            </div>
+            </div>
+            </div>
+            </div>
+            <div class="mdui-row">
+                <div class="mdui-col-sm-6 mdui-col-md-10">
+                <div class="mdui-card" style="background-color: rgba(255, 255, 255, 0.5)">
+                    <div class="mdui-card-primary">
+                        <div class="mdui-card-primary-title"><font style="size:20mm;">服务器配置</font></div>
+                      </div>
+                <div class="mdui-card-content">
+                    <!--服务器配置-->
+                    <form method="post">
+                        {{ settings_form.hidden_tag() }}
+                        <div class="mdui-textfield">
+                            <font size="4">键</font>
+                        {{ settings_form.key(class="mdui-textfield-input mdui-text-right",style="width:1000px;display:inline;",placeholder="键") }}
+                        </div>
+                        <div class="mdui-textfield">
+                            <font size="4">值</font>
+                        {{ settings_form.value(class="mdui-textfield-input mdui-text-right",style="width:1000px;display:inline;",placeholder="值") }}
+                        </div>
+                        {{ settings_form.submit(class="mdui-btn mdui-btn-raised") }}
+                    </form>
+                </div>
+                </div>
+                </div>
+                </div>
+                <div class="mdui-row">
+                    <div class="mdui-col-sm-6 mdui-col-md-10">
+                    <div class="mdui-card" style="background-color: rgba(255, 255, 255, 0.5)">
+                        <div class="mdui-card-primary">
+                            <div class="mdui-card-primary-title"><font style="size:20mm;">服务器Properties</font></div>
+                          </div>
+                    <div class="mdui-card-content">
+                        <!--服务器Properties-->
+                        <a href="{{ url_for("server.mc_properties") }}"><button class="mdui-btn mdui-btn-raised"><font color="grey">编辑</font></button></a>
+                    </div>
+                    </div>
+                    </div>
+                    </div>
+                    <div class="mdui-row">
+                        <div class="mdui-col-sm-6 mdui-col-md-10">
+                        <div class="mdui-card" style="background-color: rgba(255, 255, 255, 0.5)">
+                            <div class="mdui-card-primary">
+                                <div class="mdui-card-primary-title"><font style="size:20mm;">小贴士</font></div>
+                              </div>
+                        <div class="mdui-card-content">
+                            <!--Tips-->
+                            <ul class="mdui-list">
+                                    <li class="mdui-list-item"><h3>服务器需要设置才能启动，试试服务器配置一栏：</h3></li>
+                                    <li class="mdui-list-item">java : java 路径 (环境有配置的话直接java就行)</li>
+                                        <li class="mdui-list-item">core : 服务端核心路径</li>
+                                            <li class="mdui-list-item">max  : 最大堆内存</li>
+                                                <li class="mdui-list-item"> min  : 初始堆内存</li>
+                                                    <li class="mdui-list-item"> host : 服务器地址</li>
+                                                        <li class="mdui-list-item">port : Aurora Core 使用的端口号(默认为9028)</li>
+                            </ul>
+                        </div>
+                        </div>
+                        </div>
+                        </div>
+    </div>
+    </div>
+    </div>
+    </div>
+{% endblock %}
+{% block items %}
+    {{ drawer.drawer_item_admin("用户","/user/",user) }}
+{% endblock %}

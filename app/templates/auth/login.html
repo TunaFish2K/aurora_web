@@ -1,0 +1,37 @@
+{% extends "base.html" %}
+{% block title %} 登录 {% endblock %}
+{% block pagename %} 登录 {% endblock %}
+{% block body %}
+<div class="mdui-row">
+<div class="mdui-col-sm-6 mdui-col-md-4" align="center">
+<div class="mdui-card">
+    <div class="mdui-card-primary">
+        <div class="mdui-card-primary-title">登录</div>
+        
+      </div>
+<div class="mdui-card-content">
+<form method="post">
+    {{ form.hidden_tag() }}
+    <div class="mudi-textfield">
+    {{ form.username(class="mdui-textfield-input",type="text",placeholder="用户名") }}
+    </div>
+    <div class="mudi-textfield">
+    {{ form.password(class="mdui-textfield-input",type="password",placeholder="密码") }}
+    </div>
+    <div><label class="mdui-checkbox">
+        <input class="mdui-checkbox-icon" id="remember_me" name="remember_me" type="checkbox" value="y">
+        <i class="mdui-checkbox-icon"></i>
+        记住我
+    </label>
+    </div>
+    <div><div class="mdui-text-left">{{ form.submit(class="mdui-btn mdui-btn-raised mdui-ripple mdui-color-cyan ") }} <span class="mdui-color-red">
+        {% if error=="1" %}
+        用户名或密码错误！
+        {% endif %}
+    </span></div> </div>
+</form>
+</div>
+</div>
+</div>
+</div>
+{% endblock %}

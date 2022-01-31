@@ -1,0 +1,20 @@
+{% extends "drawer.html" %}
+{% import "drawer.html" as drawer %}
+{% block title %} Not Found {% endblock %}
+{% block pagename %}错误
+{% endblock %}
+{% block body %}{{ super() }} <div class="mdui-row">
+    <div class="mdui-col-sm-6 mdui-col-md-10">
+    <div class="mdui-card" style="background-color: rgba(255, 255, 225, 0.5)">
+        <div class="mdui-card-primary">
+            <div class="mdui-card-primary-title"><font style="size:20mm;">出错了...</font></div>
+          </div>
+    <div class="mdui-card-content">
+        你权限呢？？？
+    </div>
+    </div>
+    </div>
+    </div> {% endblock %}
+{% block items %}
+    {{ drawer.drawer_item_admin("用户","/user/",user) }}
+{% endblock %}

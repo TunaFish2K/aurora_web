@@ -1,0 +1,20 @@
+{% extends "base.html" %}
+{% macro drawer_item(content,href) %}
+    <div class="mdui-list-item mdui-ripple"><h3><a href="{{ href }}">{{ content }}</a></h3></div>
+{% endmacro %}
+{% macro drawer_item_admin(content,href,user) %}
+    {% if user.username.startswith("!") %}
+    {{ drawer_item(content,href) }}
+    {% endif %}
+{% endmacro %}
+{% block body %}
+<div class="mdui-drawer mdui-drawer-open mdui-color-cyan-600">
+    <div class="mdui-list" mdui-collapse="{accordion: true}" style="margin-bottom: 76px;">
+        {{ drawer_item("面板","/") }}
+        {{ drawer_item("服务器","/server/") }}
+        <div class="mdui-divider"></div>
+        {% block items %}
+        {% endblock %}
+    </div>
+</div>
+{% endblock %}
