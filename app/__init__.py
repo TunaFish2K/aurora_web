@@ -28,6 +28,7 @@ def create_app():
     
     app_ctx=app.app_context()
     app_ctx.push()
+    db.create_all()
     from .models import User
     if db.session.query(User).filter_by(username=Config.ADMIN_NAME).count() <1:
         admin=User(username=Config.ADMIN_NAME,password=Config.ADMIN_PASSWORD)
