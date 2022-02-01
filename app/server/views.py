@@ -59,8 +59,11 @@ class Server:
             with open(os.path.dirname(os.path.abspath(self.settings["core"]))+os.sep+"server.properties","w+") as f: 
                 f.write(form.edit.data)
             return flask.redirect(flask.url_for("server.mc_properties"))
-        with open(os.path.dirname(os.path.abspath(self.settings["core"]))+os.sep+"server.properties","r+") as f: 
-            form.edit.data=f.read()
+        try:
+            with open(os.path.dirname(os.path.abspath(self.settings["core"]))+os.sep+"server.properties","r+") as f: 
+                form.edit.data=f.read()
+        except FileNotFoundError:
+            form.edit.data=""
         return flask.render_template("server/properties.html",user=current_user._get_current_object(),form=form)
 c=Server(target_host="127.0.0.1",target_port="9028")
 @server_blueprint.route("/command/<path:com>/")
